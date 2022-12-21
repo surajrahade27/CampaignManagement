@@ -76,7 +76,7 @@ func CreateCampaing(c *gin.Context) {
 	// Create book
 	campaing := models.Campaing{ID: input.ID,
 		Title:                 input.Title,
-		Status:                false, //after publish campaign status will be set as true
+		Status:                input.Status, //after publish campaign status will be set as true
 		Order_start_date:      input.Order_start_date,
 		Order_end_date:        input.Order_end_date,
 		Collection_start_date: input.Collection_start_date,

@@ -11,7 +11,7 @@ type Campaing struct {
 
 	ID                    int    `gorm:"primaryKey" json:"ID"`
 	Title                 string `json:"title"`
-	Status                bool   `json:"status"`
+	Status                string `json:"status"`
 	Order_start_date      string `json:"order_start_date"`
 	Order_end_date        string `json:"order_end_date"`
 	Collection_start_date string `json:"collection_start_date"`
