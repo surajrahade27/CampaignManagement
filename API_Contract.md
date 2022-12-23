@@ -3,7 +3,7 @@
 ```
 {
 
-  	ID                  : int
+  ID                  : int
 	Title               : string
 	Status              : string
 	Order_start_date      : datetime(iso 8601)
@@ -19,7 +19,7 @@
 	Swimlane_item_count : int    
 }
 ```
-**GET /getCampaingList**
+**GET /campaigns/getCampaingList**
 ----
   Returns all Campaigns in the system.
 * **URL Params**  
