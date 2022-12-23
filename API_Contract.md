@@ -92,7 +92,7 @@
 
 
 
-**POST /campaigns/publishCampaign/:id**
+**PUT /campaigns/publishCampaign/:id**
 ----
 This Api will change the status of specified campaign
 * **URL Params**  
@@ -104,3 +104,9 @@ None
 * **Success Response:**  
 * **Code:** 200  
   **Content:**  `{ <campaign_object> }` 
+* **Error Response:**  
+  * **Code:** 404  
+  **Content:** `{ error : "Campaign doesn't exist" }`  
+  OR  
+  * **Code:** 401  
+  **Content:** `{ error : error : "You are unauthorized to make this request." }`
