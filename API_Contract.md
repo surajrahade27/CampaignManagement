@@ -19,9 +19,9 @@
 	Swimlane_item_count : int    
 }
 ```
-**GET /users**
+**GET /getCampaigns**
 ----
-  Returns all users in the system.
+  Returns all Campaigns in the system.
 * **URL Params**  
   None
 * **Data Params**  
@@ -33,17 +33,17 @@
   **Content:**  
 ```
 {
-  users: [
-           {<user_object>},
-           {<user_object>},
-           {<user_object>}
+  campaigns: [
+           {<campaign_object>},
+           {<campaign_object>},
+           {<campaign_object>}
          ]
 }
 ```
 
-**GET /users/:id**
+**GET /campaigns/:id**
 ----
-  Returns the specified user.
+  Returns the specified campaign.
 * **URL Params**  
   *Required:* `id=[integer]`
 * **Data Params**  
@@ -53,7 +53,7 @@
   Authorization: Bearer `<OAuth Token>`
 * **Success Response:** 
 * **Code:** 200  
-  **Content:**  `{ <user_object> }` 
+  **Content:**  `{ <campaign_object> }` 
 * **Error Response:**  
   * **Code:** 404  
   **Content:** `{ error : "Campaign doesn't exist" }`  
@@ -61,9 +61,9 @@
   * **Code:** 401  
   **Content:** `{ error : error : "You are unauthorized to make this request." }`
 
-**GET /users/:id/orders**
+**GET /campaigns/:id/orders**
 ----
-  Returns all Orders associated with the specified user.
+  Returns all Orders associated with the specified campaign.
 * **URL Params**  
   *Required:* `id=[integer]`
 * **Data Params**  
@@ -90,7 +90,7 @@
   * **Code:** 401  
   **Content:** `{ error : error : "You are unauthorized to make this request." }`
 
-**POST /users**
+**POST /campaigns**
 ----
   Creates a new Campaign and returns the new object.
 * **URL Params**  
@@ -100,23 +100,23 @@
 * **Data Params**  
 ```
   {
-    username: string,
+    campaignname: string,
     email: string
   }
 ```
 * **Success Response:**  
 * **Code:** 200  
-  **Content:**  `{ <user_object> }` 
+  **Content:**  `{ <campaign_object> }` 
 
-**PATCH /users/:id**
+**PATCH /campaigns/:id**
 ----
-  Updates fields on the specified user and returns the updated object.
+  Updates fields on the specified campaign and returns the updated object.
 * **URL Params**  
   *Required:* `id=[integer]`
 * **Data Params**  
 ```
   {
-  	username: string,
+  	campaignname: string,
     email: string
   }
 ```
@@ -125,7 +125,7 @@
   Authorization: Bearer `<OAuth Token>`
 * **Success Response:** 
 * **Code:** 200  
-  **Content:**  `{ <user_object> }`  
+  **Content:**  `{ <campaign_object> }`  
 * **Error Response:**  
   * **Code:** 404  
   **Content:** `{ error : "Campaign doesn't exist" }`  
@@ -133,9 +133,9 @@
   * **Code:** 401  
   **Content:** `{ error : error : "You are unauthorized to make this request." }`
 
-**DELETE /users/:id**
+**DELETE /campaigns/:id**
 ----
-  Deletes the specified user.
+  Deletes the specified campaign.
 * **URL Params**  
   *Required:* `id=[integer]`
 * **Data Params**  
@@ -304,7 +304,7 @@
 ```
 {
   id: integer
-  user_id: <user_id>
+  campaign_id: <campaign_id>
   total: float(2)
   products: [
               { 
@@ -326,7 +326,7 @@
 ```
 **GET /orders**
 ----
-  Returns all users in the system.
+  Returns all campaigns in the system.
 * **URL Params**  
   None
 * **Data Params**  
@@ -395,7 +395,7 @@
   * **Code:** 401  
   **Content:** `{ error : error : "You are unauthorized to make this request." }`
 
-**GET /orders/:id/user**
+**GET /orders/:id/campaign**
 ----
   Returns all Campaigns associated with the specified order.
 * **URL Params**  
@@ -405,7 +405,7 @@
 * **Headers**  
   Content-Type: application/json  
   Authorization: Bearer `<OAuth Token>`
-* **Success Response:** `{ <user_object> }`  
+* **Success Response:** `{ <campaign_object> }`  
 * **Error Response:**  
   * **Code:** 404  
   **Content:** `{ error : "Order doesn't exist" }`  
@@ -421,7 +421,7 @@
 * **Data Params**  
 ```
   {
-  	user_id: <user_id>
+  	campaign_id: <campaign_id>
   	product: <product_id>,
   	quantity: integer 
   }
