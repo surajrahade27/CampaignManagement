@@ -89,3 +89,18 @@
 * **Success Response:**  
 * **Code:** 200  
   **Content:**  `{ <campaign_object> }` 
+
+
+
+**POST /campaigns/publishCampaign/:id**
+----
+This Api will change the status of specified campaign
+* **URL Params**  
+  None
+* **Headers**  
+  Content-Type: application/json  
+* **Data Params**  
+None
+* **Success Response:**  
+* **Code:** 200  
+  **Content:**  `{ <campaign_object> }` 
