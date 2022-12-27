@@ -7,10 +7,10 @@ info:
     
     Some useful links:
     - [The Campaign Management Figma Document ](https://www.figma.com/file/1lDWs1Bjzp6qRFa7O07tQD/Pre-Order---Back-Office?node-id=33%3A636&t=IUMKN90ff7PT7H6b-0)
-    - [The source API definition for the Campaign Management](https://github.com/swagger-api/swagger-petstore/blob/master/src/main/resources/openapi.yaml)
+    
   termsOfService: http://swagger.io/terms/
   contact:
-    email: apiteam@swagger.io
+    email: suraj.rahade@ntucenterprise.sg
   license:
     name: Apache 2.0
     url: http://www.apache.org/licenses/LICENSE-2.0.html
@@ -19,7 +19,7 @@ externalDocs:
   description: Find out more about Swagger
   url: http://swagger.io
 servers:
-  - url: http://localhost:8080/campaigns
+  - url: http://localhost:8080
 tags:
   - name: Campaigns
     description: Everything about your Campaigns
@@ -34,164 +34,125 @@ tags:
   # - name: user
   #   description: Operations about user
 paths:
-  /campaigns/getCampaingList:
+  /campaigns/get_campaign_list:
     get:
       tags:
         - Campaigns
       summary: Returns all Campaigns in the system.
       description: Returns all Campaigns in the system.
-      operationId: getCampaingList
-      # requestBody:
-      #   description: Returns all Campaigns in the system.
-      #   content:
-      #     application/json:
-      #       schema:
-      #         $ref: '#/components/schemas/Pet'
-      #     application/xml:
-      #       schema:
-      #         $ref: '#/components/schemas/Pet'
-      #     application/x-www-form-urlencoded:
-      #       schema:
-      #         $ref: '#/components/schemas/Pet'
-      #   required: true
+      operationId: get_campaign_list
       responses:
         '200':
           description: Successful operation
           content:
             application/json:
               schema:  
-                $ref: '#/components/requestBodies/CampaignArray'
+                $ref: '#/definitions/AllCampaign'
             application/xml:
               schema:
-                $ref: '#/components/schemas/Campaign'
-        '400':
-          description: Invalid ID supplied
-        '404':
-          description: Campaign not found
-        '405':
-          description: Validation exception
+                $ref: '#/definitions/AllCampaign'
 
-  /campaigns/getCampaingDetailsById/:id:
+  /campaigns/get_campaign_details_by_id/{campaignId}:
     get:
       tags:
         - Campaigns
-      summary: Returns all Campaigns in the system.
-      description: Returns all Campaigns in the system.
-      operationId: getCampaingDetailsById
-      # requestBody:
-      #   description: Returns all Campaigns in the system.
-      #   content:
-      #     application/json:
-      #       schema:
-      #         $ref: '#/components/schemas/Pet'
-      #     application/xml:
-      #       schema:
-      #         $ref: '#/components/schemas/Pet'
-      #     application/x-www-form-urlencoded:
-      #       schema:
-      #         $ref: '#/components/schemas/Pet'
-      #   required: true
+      summary: Returns the specified campaign.
+      description: Returns the specified campaign.
+      operationId: get_campaign_details_by_id
+      parameters:
+        - name: campaignId
+          in: path
+          description: ID of campaign to return
+          required: true
+          schema:
+            type: integer
+            format: int64
       responses:
         '200':
           description: Successful operation
           content:
             application/json:
               schema:  
-                $ref: '#/components/requestBodies/CampaignArray'
+                $ref: '#/components/schemas/Campaign'
             application/xml:
               schema:
                 $ref: '#/components/schemas/Campaign'
         '400':
-          description: Invalid ID supplied
+          description: Invalid campaignId supplied
         '404':
           description: Campaign not found
         '405':
           description: Validation exception
 
-  /campaigns/createCampaign:
+  /campaigns/save_campaign:
     post:
       tags:
         - Campaigns
-      summary: Returns all Campaigns in the system.
-      description: Returns all Campaigns in the system.
-      operationId: createCampaign
-      # requestBody:
-      #   description: Returns all Campaigns in the system.
-      #   content:
-      #     application/json:
-      #       schema:
-      #         $ref: '#/components/schemas/Pet'
-      #     application/xml:
-      #       schema:
-      #         $ref: '#/components/schemas/Pet'
-      #     application/x-www-form-urlencoded:
-      #       schema:
-      #         $ref: '#/components/schemas/Pet'
-      #   required: true
+      summary: Creates a new Campaign and returns the new object.
+      description: Creates a new Campaign and returns the new object.
+      operationId: save_campaign
+      requestBody:
+        description: Create a new Campaigns in the system.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Campaign'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Campaign'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Campaign'
+        required: true
       responses:
         '200':
           description: Successful operation
           content:
             application/json:
               schema:  
-                $ref: '#/components/requestBodies/CampaignArray'
+                $ref: '#/components/schemas/Campaign'
             application/xml:
               schema:
                 $ref: '#/components/schemas/Campaign'
         '400':
-          description: Invalid ID supplied
+          description: Invalid Data supplied
         '404':
-          description: Campaign not found
+          description: Not found
         '405':
           description: Validation exception
 
-  /campaigns/publishCampaign/:id:
+  /campaigns/publish_campaign/:id:
     put:
       tags:
         - Campaigns
-      summary: Returns all Campaigns in the system.
-      description: Returns all Campaigns in the system.
+      summary: This Api will change the status of specified campaign
+      description: This api will change the status of specified campaign
       operationId: publishCampaign
-      # requestBody:
-      #   description: Returns all Campaigns in the system.
-      #   content:
-      #     application/json:
-      #       schema:
-      #         $ref: '#/components/schemas/Pet'
-      #     application/xml:
-      #       schema:
-      #         $ref: '#/components/schemas/Pet'
-      #     application/x-www-form-urlencoded:
-      #       schema:
-      #         $ref: '#/components/schemas/Pet'
-      #   required: true
+
       responses:
         '200':
           description: Successful operation
           content:
             application/json:
               schema:  
-                $ref: '#/components/requestBodies/CampaignArray'
+                $ref: '#/requestBodies/CampaignArray'
             application/xml:
               schema:
                 $ref: '#/components/schemas/Campaign'
         '400':
-          description: Invalid ID supplied
+          description: Invalid campaignID supplied
         '404':
           description: Campaign not found
         '405':
           description: Validation exception
-
-
-
 
 
 components:
   schemas:
 
     Campaign:
-      required:
-        - title
+      # required:
+        # - title
         # - photoUrls
       type: object
       properties:
@@ -227,7 +188,7 @@ components:
           example: 25 Dec 2023 Order ahead and pick up in store
         onboarding_image:
           type: string
-          example: 25 Dec 2023 Order ahead and pick up in store
+          example: images.jpeg
         swimlane_item_count:
           type: integer
           format: int64
@@ -247,20 +208,7 @@ components:
       xml:
         name: Campaign
         
-    ApiResponse:
-      type: object
-      properties:
-        code:
-          type: integer
-          format: int32
-        type:
-          type: string
-        message:
-          type: string
-      xml:
-        name: '##default'
-        
-  requestBodies:
+requestBodies:
   
     Campaign:
       description: Campaign object that needs to be added to the store
@@ -281,26 +229,11 @@ components:
             items:
               $ref: '#/components/schemas/Campaign'
               
-  # securitySchemes:
-  #   petstore_auth:
-  #     type: oauth2
-  #     flows:
-  #       implicit:
-  #         authorizationUrl: https://petstore3.swagger.io/oauth/authorize
-  #         scopes:
-  #           write:pets: modify pets in your account
-  #           read:pets: read your pets
-    # api_key:
-    #   type: apiKey
-    #   name: api_key
-    #   in: header
 definitions:
   AllCampaign:
     type: array
     items:
-      $ref: '#/definitions/ContactModel'
+        $ref: '#/definitions/CampaignModel'
 
   CampaignModel:
-    type: object
-    schema:
     $ref: '#/components/schemas/Campaign'
