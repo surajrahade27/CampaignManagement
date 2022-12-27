@@ -121,21 +121,28 @@ paths:
         '405':
           description: Validation exception
 
-  /campaigns/publish_campaign/:id:
+  /campaigns/publish_campaign/{campaignId}:
     put:
       tags:
         - Campaigns
       summary: This Api will change the status of specified campaign
       description: This api will change the status of specified campaign
       operationId: publishCampaign
-
+      parameters:
+        - name: campaignId
+          in: path
+          description: campaignId of campaign to change the status
+          required: true
+          schema:
+            type: integer
+            format: int64
       responses:
         '200':
           description: Successful operation
           content:
             application/json:
               schema:  
-                $ref: '#/requestBodies/CampaignArray'
+                $ref: '#/components/schemas/Campaign'
             application/xml:
               schema:
                 $ref: '#/components/schemas/Campaign'
